@@ -91,3 +91,7 @@ dd {
     margin-left: 0;
     margin-bottom: 0.5em;
 }
+
+.gekozen img {
+    border: 1px solid red
+}
