@@ -1,22 +1,27 @@
 "use strict";
-const voornamen = [];
-let aantal = 1;
-
 document.getElementById("toevoegen").onclick = function () {
     const voornaamToevoegen = document.getElementById("voornaam");
     const voornaam = voornaamToevoegen.value;
-    if (voornamen.includes(voornaam)) {
-        voornamen.push(voornaam);
-        aantal = voornamen.filter(naam => naam === voornaam).length;
-        document.getElementById(voornaam).innerText = `${voornaam} ${aantal}`;
+    const lijst = document.getElementById("lijst");
+    if (lijst.children.length > 0) {
+        if (voornaam === "stop") {
+            let aantal = 0;
+            aantal = 0;
+        } else {
+            nieuweNaamToevoegen(voornaam);
+        }
     } else {
-        aantal = 1;
-        voornamen.push(voornaam);
-        const li = document.createElement("li");
-        li.setAttribute("id", voornaam);
-        li.innerText = `${voornaam} ${aantal}`;
-        document.getElementById("lijst").appendChild(li);
+        nieuweNaamToevoegen(voornaam);
     }
     voornaamToevoegen.value = "";
     voornaamToevoegen.focus();
+}
+
+function nieuweNaamToevoegen(naam) {
+    let aantal = 1;
+    const li = document.createElement("li");
+    li.dataset.naam = naam;
+    li.dataset.aantal = aantal;
+    li.innerText = `${naam}: ${aantal}`;
+    lijst.appendChild(li);
 }
